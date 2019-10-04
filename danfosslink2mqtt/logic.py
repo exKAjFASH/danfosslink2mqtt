@@ -28,7 +28,7 @@ def on_message(client, userdata, message):
                 room_name = room["name"]
 
                 break
- 
+
         m = "set the temperature in {1} to {0}".format(to_fahrenheit(message.payload.decode("UTF-8")), room_name)
         x = urllib.parse.quote(m)
         u = "https://virtual-device.bespoken.io/process?user_id={0}&message=".format(config.CONFIG["bespoken_token"]) + x
@@ -57,12 +57,12 @@ def do_logic():
     while True:
         print("Looping")
         for room in config.CONFIG["thermostats"]:
-            url = "https://virtual-device.bespoken.io/process?user_id={0}&message=What%20is%20the%20temperature%20at%20{1}?".format(config.CONFIG["bespoken_token"], room["name"])
+            url = "https://virtual-device.bespoken.io/process?user_id={0}&message=What%20is%20the%20temperature%20in%20the%20{1}?".format(config.CONFIG["bespoken_token"], room["name"])
             response = requests.get(url)
 
             if response.status_code == requests.codes.ok:
                 handle_response(response, room, client)
-            else: 
+            else:
                 print("Bad status from request.")
                 print(response)
 
