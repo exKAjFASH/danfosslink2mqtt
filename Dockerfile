@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN  apk add python \
+RUN  apk add python python-dev py-pip \
      && pip install  \
         certifi==2018.11.29 \
         chardet==3.0.4 \
