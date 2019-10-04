@@ -1,12 +1,26 @@
-FROM python:3
-#FROM arm32v7/python:3.7.4-buster
+ARG BUILD_FROM=hassioaddons/base:4.1.1
+# hadolint ignore=DL3006
+FROM ${BUILD_FROM}
 
 RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
-copy . .
+COPY . .
 
-RUN pip install -r requirements.txt
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        python3 \
+        python3-dev \
+        python3-pip \
+    && pip3 install --no-cache-dir \
+        certifi==2018.11.29 \
+        chardet==3.0.4 \
+        idna==2.8 \
+        paho-mqtt==1.4.0 \
+        PyYAML==3.13 \
+        requests==2.21.0 \
+        urllib3==1.24.1
+
 
 CMD [ "python", "-m", "danfosslink2mqtt" ]
