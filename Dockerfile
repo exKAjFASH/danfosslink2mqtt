@@ -1,5 +1,5 @@
-#FROM python:3
-FROM arm32v7/python:3.7.4-buster
+FROM python:3
+#FROM arm32v7/python:3.7.4-buster
 
 RUN mkdir -p /usr/src/app
 
