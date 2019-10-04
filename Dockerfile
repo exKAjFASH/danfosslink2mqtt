@@ -8,7 +8,13 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN  apk add python python-dev py-pip \
+RUN  apk add python3 \
+     && python3 -m ensurepip \
+     && pip3 install --upgrade pip setuptools \
+     && rm -r /usr/lib/python*/ensurepip && \
+     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+     rm -r /root/.cache \
      && pip install  \
         certifi==2018.11.29 \
         chardet==3.0.4 \
