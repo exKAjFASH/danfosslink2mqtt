@@ -8,7 +8,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN  pip3 install  \
+RUN  apk add python \
+     && pip3 install  \
         certifi==2018.11.29 \
         chardet==3.0.4 \
         idna==2.8 \
