@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN  apk add python \
-     && pip3 install  \
+     && pip install  \
         certifi==2018.11.29 \
         chardet==3.0.4 \
         idna==2.8 \
