@@ -1,7 +1,9 @@
 #ARG BUILD_FROM=hassioaddons/base:4.1.1
-ARG BUILD_FROM=resin/rpi-raspbian:latest
+#ARG BUILD_FROM=resin/rpi-raspbian:latest
 # hadolint ignore=DL3006
-FROM ${BUILD_FROM}
+#FROM ${BUILD_FROM}
+
+FROM=resin/rpi-raspbian:latest
 
 RUN mkdir -p /usr/src/app
 
@@ -25,4 +27,5 @@ RUN  apk add python3 \
         requests==2.21.0 \
         urllib3==1.24.1
 
-CMD [ "run.sh"   ]
+#CMD [ "run.sh"   ]
+CMD [ "python", "-m", "danfosslink2mqtt" ]
