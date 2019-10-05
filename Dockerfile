@@ -1,4 +1,5 @@
-ARG BUILD_FROM=hassioaddons/base:4.1.1
+#ARG BUILD_FROM=hassioaddons/base:4.1.1
+ARG BUILD_FROM=resin/rpi-raspbian:latest
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
