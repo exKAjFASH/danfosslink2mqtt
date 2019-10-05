@@ -1,25 +1,21 @@
-ARG BUILD_FROM=hassioaddons/base-python:3.0.0
+ARG BUILD_FROM=hassioaddons/base:4.1.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
-# Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN mkdir -p /usr/src/app
 
-#RUN mkdir -p /tmp/app
+WORKDIR /usr/src/app
 
-RUN python3 -m ensurepip
+COPY . .
 
-RUN pip3 install --upgrade pip setuptools
-
-RUN rm -r /usr/lib/python*/ensurepip && \
+RUN  apk add python3 \
+     && python3 -m ensurepip \
+     && pip3 install --upgrade pip setuptools \
+     && rm -r /usr/lib/python*/ensurepip && \
      if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi
-
-#WORKDIR /tmp/app
-
-COPY . /
-
-RUN  pip install  \
+     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+     rm -r /root/.cache \
+     && pip install  \
         certifi==2018.11.29 \
         chardet==3.0.4 \
         idna==2.8 \
