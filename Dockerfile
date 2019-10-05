@@ -3,8 +3,8 @@
 # hadolint ignore=DL3006
 #FROM ${BUILD_FROM}
 
-#FROM resin/raspberry-pi-python:latest
-FROM hypriot/rpi-python
+FROM resin/raspberry-pi-python:latest
+#FROM hypriot/rpi-python
 #FROM arm32v7/python:2.7.13-jessie
 
 #RUN mkdir /tmp/app
@@ -14,7 +14,6 @@ FROM hypriot/rpi-python
 COPY . .
 
 RUN  pip install  \
-        certifi==2018.11.29 \
         chardet==3.0.4 \
         idna==2.8 \
         paho-mqtt==1.4.0 \
