@@ -5,11 +5,11 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN mkdir -p /tmp/app
+#RUN mkdir -p /tmp/app
 
-WORKDIR /tmp/app
+#WORKDIR /tmp/app
 
-COPY . .
+COPY . /
 
 RUN  pip install  \
         certifi==2018.11.29 \
