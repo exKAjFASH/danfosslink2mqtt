@@ -3,7 +3,7 @@
 # hadolint ignore=DL3006
 #FROM ${BUILD_FROM}
 
-FROM=resin/rpi-raspbian:latest
+FROM=raspbian/stretch:latest
 
 RUN mkdir -p /usr/src/app
 
