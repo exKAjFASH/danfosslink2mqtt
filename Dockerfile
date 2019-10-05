@@ -3,11 +3,11 @@ ARG BUILD_FROM=hassioaddons/base-python:3.0.0
 FROM ${BUILD_FROM}
 
 # Set shell
-#SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /tmp/app
 
-WORKDIR /usr/src/app
+WORKDIR /tmp/app
 
 COPY . .
 
