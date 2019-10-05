@@ -5,9 +5,9 @@
 
 FROM raspbian/stretch:latest
 
-RUN mkdir -p /usr/src/app
+RUN mkdir /tmp/app
 
-WORKDIR /usr/src/app
+WORKDIR /tmp/app
 
 COPY . .
 
