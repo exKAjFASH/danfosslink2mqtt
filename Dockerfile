@@ -5,9 +5,9 @@
 
 FROM resin/raspberry-pi-python:latest
 
-RUN mkdir /tmp/app
+#RUN mkdir /tmp/app
 
-WORKDIR /tmp/app
+#WORKDIR /tmp/app
 
 COPY . .
 
