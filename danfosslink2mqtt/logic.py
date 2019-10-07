@@ -46,6 +46,7 @@ def to_celsius(temperature):
 
 def do_logic():
     client = mqtt.Client("Danfoss2Mqtt")
+    client.username_pw_set(config.CONFIG["mqtt"]["username"], config.CONFIG["mqtt"]["password"])
     client.connect(config.CONFIG["mqtt"]["host"])
     client.on_message = on_message
 
