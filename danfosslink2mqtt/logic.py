@@ -7,7 +7,7 @@ from decimal import Decimal
 import paho.mqtt.client as mqtt
 import requests
 
-import danfosslink2mqtt.config as config
+import config
 
 #pylint: disable=unused-argument
 def on_connect(client, userdata, flags, return_code):
@@ -71,7 +71,19 @@ def do_logic():
 def handle_response(response, room, client):
     data = json.loads(response.text)
 
+    iserror = re.search(r"( isn't responding)", data["transcript"])
+    if iserror is not None:
+        print("{0} not responding.".format(room["name"]))
+        return
+
+    iserror = re.search(r"(Error in response)", response.text)
+    if iserror is not None:
+        print("Error in response.")
+        return
+
     match = re.search(r"(\d*.?\d)( degrees)", data["transcript"])
+    if match is None:
+        return
 
     if match.group(1) is not None:
         print("Temperature in {0} is {1}".format(room["name"], match.group(1)))

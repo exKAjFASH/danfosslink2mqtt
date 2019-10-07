@@ -7,9 +7,9 @@ FROM resin/raspberry-pi-python:latest
 #FROM hypriot/rpi-python
 #FROM arm32v7/python:2.7.13-jessie
 
-#RUN mkdir /tmp/app
+RUN mkdir -p /usr/src/app
 
-#WORKDIR /tmp/app
+WORKDIR /usr/src/app
 
 COPY . .
 
@@ -22,4 +22,4 @@ RUN  pip install  \
         urllib3==1.24.1
 
 #CMD [ "run.sh"   ]
-CMD [ "python", "-m", "danfosslink2mqtt" ]
+CMD [ "python", "danfosslink2mqtt" ]
